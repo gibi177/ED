@@ -64,6 +64,21 @@ def postorder(tree): #Subesq dps subdir dps raiz
         postorder(tree.getRightChild())
         print(tree.getRootVal())
 
+def altura(raiz):
+    if raiz is None:
+        return 0
+
+    if len(raiz) > 0:
+        if raiz[1]==[] and raiz[2]==[]:
+            return 0
+        altura_esq = altura(raiz[1])
+        altura_dir = altura(raiz[2])
+    
+    elif raiz==[]:
+        return 0
+
+    return 1+ max(altura_esq, altura_dir)
+
 
 r = BinaryTree(1)
 
@@ -82,5 +97,6 @@ node_add= getLeftChild(getLeftChild(r)) #elem a esquerda da esquerda da raiz(3)
 InsertRight(node_add,7)
 
 print(r)
+print(altura(r))
 print(getLeftChild(r))
 print(getRightChild(r))
