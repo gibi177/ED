@@ -1,3 +1,4 @@
+#Ta meio mais ou menos 
 class BinaryTree:
     def __init__(self, root):
         self.root = root
@@ -32,14 +33,14 @@ class BinaryTree:
     def set_root_val(self, value):
         self.root = value
 
-# Example usage
+
 r = BinaryTree(0)
 print(r.get_root())
 print(r.get_left_child())
 print(r.get_right_child())
 
 r.insert_left(1)
-print(r.get_left_child().get_root())  # Corrected this line
+print(r.get_left_child().get_root())  
 r.insert_right(2)
-print(r.get_right_child().get_root())  # Corrected this line
+print(r.get_right_child().get_root())  
 r.insert_left(3)
