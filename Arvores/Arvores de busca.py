@@ -54,8 +54,8 @@ class BinarySearchTree:
                 if node.left==None and node.right==None: #leaf node
                     return 1
                 return recursiveleafcounter(node.left) + recursiveleafcounter(node.right)
-            return 0 #root is None
-        
+                
+            return 0 #root is None   
         return recursiveleafcounter(self.root)
     
     def delete(self,data):
