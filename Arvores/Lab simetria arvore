@@ -1,0 +1,22 @@
+class ArvoreBinaria():
+    def __init__(self, dado, esq = None, dir = None):
+        self.dado = dado
+        self.esq = esq
+        self.dir = dir
+
+def verificaSimetria(raiz):
+    if raiz is None:
+        return True
+    return estaespelhada(raiz.esq,raiz.dir)
+    
+    
+def estaespelhada(raiz1,raiz2):
+    if raiz1 is None and raiz2 is None:
+        return True
+    
+    elif raiz1 is None or raiz2 is None:
+        return False
+    
+    else:
+        return raiz1.dado==raiz2.dado and estaespelhada(raiz1.esq,raiz2.dir) and estaespelhada(raiz1.dir,raiz2.esq)
+ 
