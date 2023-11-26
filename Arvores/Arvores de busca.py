@@ -12,7 +12,7 @@ class BinarySearchTree:
         def insert_recursive(data,current):
             new_node= Node(data)
 
-            if current==None:
+            if current==None: #raiz é None
                 self.root=new_node
 
             elif data<current.data:
@@ -29,23 +29,23 @@ class BinarySearchTree:
               
         insert_recursive(data,self.root)
     
-    def print(self): #preorder
-        def print_rec(node, level, direction):
+    def display(self): #preorder
+        def display_rec(node, level, direction):
             if node:
                 print("-" * level, node.data, direction)
-                print_rec(node.left, level + 1, 'L')
-                print_rec(node.right, level + 1, 'R')
+                display_rec(node.left, level + 1, 'L')
+                display_rec(node.right, level + 1, 'R')
 
-        print_rec(self.root, 0, 'Root')
+        display_rec(self.root, 0, 'Root')
     
-    def height(self):
-        def heightRec(node):
-            if node:
-                hl = heightRec(node.left)
-                hr = heightRec(node.right)
-                return 1+max(hl,hr)
+    def height(self,node):
+        def heightRec(cur_node):
+            if cur_node:
+                hl = heightRec(cur_node.left)
+                hr = heightRec(cur_node.right)
+                return 1 + max(hl,hr)
             return 0
-        return heightRec(self.root)-1
+        return heightRec(node)-1
     
     def leafcounter(self):
         def recursiveleafcounter(node):
@@ -105,6 +105,25 @@ class BinarySearchTree:
                 return search_recursive(node.right,data)  
 
         return search_recursive(self.root,data)
+    
+    def isSymmetric(self):
+        def checksymmetry(node1,node2):
+            if node1 is None and node2 is None:
+                return True
+            elif node1 is None or node2 is None:
+                return False
+            
+            return node1.data==node2.data and checksymmetry(node1.left,node2.right) and checksymmetry(node1.right,node2.left)
+
+        return checksymmetry(self.root.left, self.root.right)
+    
+    def isBalanced(self):
+        leftheight = self.height(self.root.left) 
+        rightheight = self.height(self.root.right)
+        
+        if abs(leftheight - rightheight) <=1:
+            return True
+        return False
 
 
 t= BinarySearchTree(10)
@@ -114,13 +133,19 @@ t.insert(7)
 t.insert(20)
 t.insert(15)
 t.insert(8)
-t.print()
+t.display()
 
 t.delete(5)
-t.print()
+t.display()
 
 print(t.search(15))
 print(t.search(16))
 
-print("height:", t.height())
+print("height:", t.height(t.root))
 print("leaves:", t.leafcounter())
+
+print(t.isSymmetric())
+
+print(t.isBalanced())
+print(t.height(t.root.left))
+print(t.height(t.root.right))
