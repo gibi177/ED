@@ -134,6 +134,28 @@ class BinarySearchTree:
                 invert_recursive(node.right)
 
         invert_recursive(self.root)
+    
+    def findMin(self):
+        def findMinrecursive(node):
+            if node:
+                if node.left is None and node.right is None:
+                    return node.data
+                elif node.left is None and node.right:
+                    return node.data
+                return findMinrecursive(node.left)
+        
+        return findMinrecursive(self.root)
+    
+    def findMax(self):
+        def findMaxrecursive(node):
+            if node:
+                if node.left is None and node.right is None:
+                    return node.data
+                elif node.right is None and node.left:
+                    return node.data
+                return findMaxrecursive(node.right)
+        
+        return findMaxrecursive(self.root)
 
 
 t= BinarySearchTree(10)
@@ -143,22 +165,33 @@ t.insert(7)
 t.insert(20)
 t.insert(15)
 t.insert(8)
+
 t.display()
+print() #pula linha
 
 t.delete(5)
 t.display()
+print() #pula linha
 
-print(t.search(15))
-print(t.search(16))
+print("Search?", t.search(15))
+print("Search?", t.search(16))
+print()
 
 print("height:", t.height(t.root))
 print("leaves:", t.leafcounter())
+print()
 
-print(t.isSymmetric())
+print("Is symmetric?", t.isSymmetric())
+print()
 
-print(t.isBalanced())
-print(t.height(t.root.left))
-print(t.height(t.root.right))
+print("Is balanced?", t.isBalanced())
+print("Left height:", t.height(t.root.left))
+print("Right height:", t.height(t.root.right))
+print()
 
-t.invert()
+print("Min value:", t.findMin())
+print("Max value:", t.findMax())
+print()
+
+t.invert() #invertido ent mt coisa n vai mais funcionar direito
 t.display()
