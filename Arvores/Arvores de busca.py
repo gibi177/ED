@@ -124,6 +124,16 @@ class BinarySearchTree:
         if abs(leftheight - rightheight) <=1:
             return True
         return False
+    
+    def invert(self):
+        def invert_recursive(node):
+            if node:
+                node.left, node.right = node.right, node.left
+            
+                invert_recursive(node.left)
+                invert_recursive(node.right)
+
+        invert_recursive(self.root)
 
 
 t= BinarySearchTree(10)
@@ -149,3 +159,6 @@ print(t.isSymmetric())
 print(t.isBalanced())
 print(t.height(t.root.left))
 print(t.height(t.root.right))
+
+t.invert()
+t.display()
